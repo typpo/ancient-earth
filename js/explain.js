@@ -21,7 +21,7 @@ var EXPLAIN_MAP = {
   105: 'Cretaceous Period.  Ceratopsian and pachycephalosaurid dinosaurs evolve.  Modern mammal, bird, and insect groups emerge.',
   90: 'Cretaceous Period.  Ceratopsian and pachycephalosaurid dinosaurs evolve.  Modern mammal, bird, and insect groups emerge.',
   65: 'Late Cretaceous.  A mass extinction occurs, leading to the extinction of dinosaurs, many marine reptiles, all flying reptiles, and many marine invertebrates and other species.  Scientists believe the exintction was caused by an asteroid impact on the present-day Yucatan Peninsula in Mexico.',
-  55: 'Early Tertiary.  Following the asteroid impact that killed the dinosaurs, surviving birds, mammals, and reptiles diversified.  Early whales evolved from land mammals.',
+  50: 'Early Tertiary.  Following the asteroid impact that killed the dinosaurs, surviving birds, mammals, and reptiles diversified.  Early whales evolved from land mammals.',
   35: 'Mid Tertiary.  Mammals have evolved from small, simple forms to a diverse group.  Primates, cetaceans, and other groups evolve.  The Earth cools and deciduous plants become more common.  The first grass species evolve.',
   20: 'Neocene Period.  Mammals and birds continue to evolve into modern forms.  Early hominids emerge in Africa.',
   0: ''
