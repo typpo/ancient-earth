@@ -15,7 +15,11 @@
 		.tm  { position: absolute; top: 10px; right: 10px; }
 		.webgl-error { font: 15px/30px monospace; text-align: center; color: #fff; margin: 50px; }
 		.webgl-error a { color: #fff; }
+    #webgl {
+    }
     .top {
+      z-index: 999990;
+      display: block;
       position: absolute;
       top: 0;
       left: 0;
@@ -27,6 +31,10 @@
       color: white;
       line-height: 2.5;
       text-align: center;
+    }
+
+    a {
+      color: white;
     }
 
     .top-sub {
@@ -42,14 +50,9 @@
       font-family: 'Open Sans', Helvetica, sans-serif;
       font-weight: bold;
       position:absolute;
-      top:0;
+      bottom:20px;
       left: 20px ;
-    }
-
-    @media screen and (max-width: 1350px) {
-      .title {
-        display: none;
-      }
+      color: white;
     }
 
     @media screen and (max-width: 850px) {
@@ -60,17 +63,41 @@
     </style>
 </head>
 <body>
-<!--
+  <div class="title">Earth, <span id="how-long-ago">600 million</span> years ago</div>
   <div class="top">
-    <span class="title">Pluto as we currently know it</span>
     <span>
-    New Horizons reaches Pluto in July!  Check back over the next few months as scientists discover what Pluto looks like.
+      What did the Earth look like
+      <select id="years-ago">
+        <option>600 million</option>
+        <option>560 million</option>
+        <option>540 million</option>
+        <option>500 million</option>
+        <option>470 million</option>
+        <option>450 million</option>
+        <option>430 million</option>
+        <option>400 million</option>
+        <option>370 million</option>
+        <option>340 million</option>
+        <option>300 million</option>
+        <option>280 million</option>
+        <option>260 million</option>
+        <option>240 million</option>
+        <option>220 million</option>
+        <option>200 million</option>
+        <option>170 million</option>
+        <option>150 million</option>
+        <option>120 million</option>
+        <option>105 million</option>
+        <option>90 million</option>
+        <option>65 million</option>
+        <option>50 million</option>
+        <option>35 million</option>
+        <option>20 million</option>
+        <option>0</option>
+      </select>
+      years ago?
     </span>
   </div>
-  <div class="top-sub">
-    Time to flyby: <span id="timer"></span>
-  </div>
--->
 	<div id="webgl"></div>
 	<script src="js/three.min.js"></script>
 	<script src="js/Detector.js"></script>

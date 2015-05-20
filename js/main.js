@@ -22,14 +22,14 @@
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(width, height);
 
-	//scene.add(new THREE.AmbientLight(0x333333));
-	scene.add(new THREE.AmbientLight(0xffffff));
+	scene.add(new THREE.AmbientLight(0x333333));
+	//scene.add(new THREE.AmbientLight(0xffffff));
 
 	var light = new THREE.DirectionalLight(0xffffff, 1);
 	light.position.set(5,3,5);
-	//scene.add(light);
+	scene.add(light);
 
-  var sphere = createSphere(radius, segments);
+  var sphere = createSphere(radius, segments, imagePathForYearsAgo(600));
 	sphere.rotation.y = rotation;
 	scene.add(sphere)
 
@@ -42,11 +42,11 @@
 	var stars = createStars(90, 64);
 	scene.add(stars);
 
-	var controls = new THREE.TrackballControls(camera);
+	var controls = new THREE.TrackballControls(camera, webglEl);
 
 	webglEl.appendChild(renderer.domElement);
 
-  startCountdown();
+  setupSelect();
 
 	render();
 
@@ -58,18 +58,29 @@
 		renderer.render(scene, camera);
 	}
 
-  function startCountdown() {
-    return;
-    setInterval(function() {
-      var time = countdown(new Date(2015, 7, 14, 11, 50) ).toString();
-      document.getElementById('timer').innerHTML = time;
-    }, 1000);
+  function setupSelect() {
+    var yearsago = document.getElementById('years-ago');
+    yearsago.onchange = function() {
+      var howmany = parseInt(yearsago.value);
+      scene.remove(sphere);
+      var img = imagePathForYearsAgo(howmany);
+      sphere = createSphere(radius, segments, img);
+      scene.add(sphere);
+
+      document.getElementById('how-long-ago').innerHTML = yearsago.value;
+    }
   }
 
-	function createSphere(radius, segments) {
+  function imagePathForYearsAgo(years) {
+    return years == 0 ? 'images/scrape/000present.jpg' : 'images/scrape/'
+        + ((years+'').length < 3 ? '0' + years : years) + 'Marect.jpg';
+  }
+
+	function createSphere(radius, segments, img) {
+    console.log('Creating sphere foe', img);
     //var map = THREE.ImageUtils.loadTexture('images/early_jurassic.jpg');
     //var map = THREE.ImageUtils.loadTexture('images/late_cretaceous.jpg');
-    var map = THREE.ImageUtils.loadTexture('images/600Marect.jpg');
+    var map = THREE.ImageUtils.loadTexture(img);
 		var mesh = new THREE.Mesh(
 			new THREE.SphereGeometry(radius, segments, segments),
 			new THREE.MeshPhongMaterial({
