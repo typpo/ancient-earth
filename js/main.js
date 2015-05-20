@@ -33,11 +33,9 @@
 	sphere.rotation.y = rotation;
 	scene.add(sphere)
 
-  /*
-    var clouds = createClouds(radius, segments);
+  var clouds = createClouds(radius, segments);
 	clouds.rotation.y = rotation;
 	scene.add(clouds)
- */
 
 	var stars = createStars(90, 64);
 	scene.add(stars);
@@ -55,6 +53,7 @@
 		//sphere.rotation.y += 0.0005;
 		sphere.rotation.y += 0.001;
 		//clouds.rotation.y += 0.0005;
+		clouds.rotation.y += 0.001;
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);
 	}
