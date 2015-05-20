@@ -17,7 +17,7 @@
 	var scene = new THREE.Scene();
 
 	var camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 1000);
-	camera.position.z = 3;
+	camera.position.z = 4;
 
 	var renderer = new THREE.WebGLRenderer();
 	renderer.setSize(width, height);
@@ -52,7 +52,8 @@
 
 	function render() {
 		controls.update();
-		sphere.rotation.y += 0.0005;
+		//sphere.rotation.y += 0.0005;
+		sphere.rotation.y += 0.001;
 		//clouds.rotation.y += 0.0005;
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);
