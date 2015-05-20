@@ -56,6 +56,16 @@
       color: white;
     }
 
+    #explanation {
+      font-size: 16px;
+      position:absolute;
+      bottom: 80px;
+      left: 20px ;
+      width: 200px;
+      line-height: 1.5;
+      color: #eee;
+    }
+
     @media screen and (max-width: 850px) {
       .top, .top-sub {
         font-size: 12px;
@@ -64,6 +74,7 @@
     </style>
 </head>
 <body>
+  <div id="explanation"></div>
   <div class="title">Earth, <span id="how-long-ago">600 million</span> years ago</div>
   <div class="top">
     <span>
@@ -104,6 +115,7 @@
 	<script src="js/Detector.js"></script>
 	<script src="js/TrackballControls.js"></script>
 	<script src="js/countdown.min.js"></script>
+	<script src="js/explain.js"></script>
 	<script src="js/main.js"></script>
 <!-- start Mixpanel --><script type="text/javascript">(function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
   for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);

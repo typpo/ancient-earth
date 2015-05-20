@@ -60,6 +60,10 @@
 
   function setupSelect() {
     var yearsago = document.getElementById('years-ago');
+    var updateWithValue = function(howmany) {
+      document.getElementById('how-long-ago').innerHTML = yearsago.value;
+      document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
+    }
     yearsago.onchange = function() {
       var howmany = parseInt(yearsago.value);
       scene.remove(sphere);
@@ -67,8 +71,10 @@
       sphere = createSphere(radius, segments, img);
       scene.add(sphere);
 
-      document.getElementById('how-long-ago').innerHTML = yearsago.value;
+      updateWithValue(howmany);
     }
+    // This is the default.
+    updateWithValue(600);
   }
 
   function imagePathForYearsAgo(years) {
