@@ -1,0 +1,93 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Ancient Earth globe</title>
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
+	<style>
+    body {
+      margin: 0;
+      overflow: hidden;
+      background-color: #000;
+      font-family: 'proxima-nova',Helvetica,sans-serif;
+    }
+		.tm  { position: absolute; top: 10px; right: 10px; }
+		.webgl-error { font: 15px/30px monospace; text-align: center; color: #fff; margin: 50px; }
+		.webgl-error a { color: #fff; }
+    .top {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 40px;
+      background-color: black;
+      border-bottom: 1px solid #404040;
+      z-index: 999999;
+      color: white;
+      line-height: 2.5;
+      text-align: center;
+    }
+
+    .top-sub {
+      position: absolute;
+      top: 50px;
+      left: 0;
+      color: #aaa;
+      text-align: center;
+      width: 100%;
+    }
+
+    .title {
+      font-family: 'Open Sans', Helvetica, sans-serif;
+      font-weight: bold;
+      position:absolute;
+      top:0;
+      left: 20px ;
+    }
+
+    @media screen and (max-width: 1350px) {
+      .title {
+        display: none;
+      }
+    }
+
+    @media screen and (max-width: 850px) {
+      .top, .top-sub {
+        font-size: 12px;
+      }
+    }
+    </style>
+</head>
+<body>
+<!--
+  <div class="top">
+    <span class="title">Pluto as we currently know it</span>
+    <span>
+    New Horizons reaches Pluto in July!  Check back over the next few months as scientists discover what Pluto looks like.
+    </span>
+  </div>
+  <div class="top-sub">
+    Time to flyby: <span id="timer"></span>
+  </div>
+-->
+	<div id="webgl"></div>
+	<script src="js/three.min.js"></script>
+	<script src="js/Detector.js"></script>
+	<script src="js/TrackballControls.js"></script>
+	<script src="js/countdown.min.js"></script>
+	<script src="js/main.js"></script>
+<!-- start Mixpanel --><script type="text/javascript">(function(d,c){var a,b,g,e;a=d.createElement("script");a.type="text/javascript";a.async=!0;a.src=("https:"===d.location.protocol?"https:":"http:")+'//api.mixpanel.com/site_media/js/api/mixpanel.2.js';b=d.getElementsByTagName("script")[0];b.parentNode.insertBefore(a,b);c._i=[];c.init=function(a,d,f){var b=c;"undefined"!==typeof f?b=c[f]=[]:f="mixpanel";g="disable track track_pageview track_links track_forms register register_once unregister identify name_tag set_config".split(" ");
+  for(e=0;e<g.length;e++)(function(a){b[a]=function(){b.push([a].concat(Array.prototype.slice.call(arguments,0)))}})(g[e]);c._i.push([a,d,f])};window.mixpanel=c})(document,[]);
+  mixpanel.init("33c7e2f25d35df78f45321ffd7525b2b");</script><!-- end Mixpanel -->
+<script>mixpanel.track('pluto');</script>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+  ga('create', 'UA-52596552-1', 'auto');
+  ga('send', 'pageview');
+</script>
+</body>
+</html>
