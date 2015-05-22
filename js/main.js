@@ -83,11 +83,12 @@
       var select = document.getElementById('years-ago');
       if (e.keyCode == 37) {
         select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
+        yearsAgoChanged();
       } else if (e.keyCode == 39) {
         select.selectedIndex =
           Math.min(select.selectedIndex + 1, select.length - 1);
+        yearsAgoChanged();
       }
-      yearsAgoChanged();
     }, false);
   }
 
