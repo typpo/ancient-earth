@@ -65,7 +65,7 @@
       document.getElementById('how-long-ago').innerHTML = yearsago.value;
       document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
     }
-    yearsago.onchange = function() {
+    var yearsAgoChanged = yearsago.onchange = function() {
       var howmany = parseInt(yearsago.value);
       scene.remove(sphere);
       var img = imagePathForYearsAgo(howmany);
@@ -76,6 +76,19 @@
     }
     // This is the default.
     updateWithValue(600);
+
+    // Keyboard listener
+    document.addEventListener('keydown', function(e) {
+      // 37 and 39 respectively
+      var select = document.getElementById('years-ago');
+      if (e.keyCode == 37) {
+        select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
+      } else if (e.keyCode == 39) {
+        select.selectedIndex =
+          Math.min(select.selectedIndex + 1, select.length - 1);
+      }
+      yearsAgoChanged();
+    }, false);
   }
 
   function imagePathForYearsAgo(years) {
