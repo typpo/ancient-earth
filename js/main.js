@@ -49,6 +49,8 @@
 
 	render();
 
+  preloadTextures();
+
 	function render() {
 		controls.update();
 		//sphere.rotation.y += 0.0005;
@@ -58,6 +60,14 @@
 		requestAnimationFrame(render);
 		renderer.render(scene, camera);
 	}
+
+  function preloadTextures() {
+    for (key in EXPLAIN_MAP) {
+      var i = new Image()
+      i.src = 'images/scrape/' + key + 'Marect.jpg';
+      console.log('preloaded', i.src);
+    }
+  }
 
   function setupSelect() {
     var yearsago = document.getElementById('years-ago');
