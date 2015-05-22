@@ -107,7 +107,6 @@
   }
 
   function createSphere(radius, segments, img) {
-    console.log('Creating sphere foe', img);
     //var map = THREE.ImageUtils.loadTexture('images/early_jurassic.jpg');
     //var map = THREE.ImageUtils.loadTexture('images/late_cretaceous.jpg');
     var map = THREE.ImageUtils.loadTexture(img);
