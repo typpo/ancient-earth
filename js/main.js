@@ -9,6 +9,9 @@
   var width  = window.innerWidth,
     height = window.innerHeight;
 
+  // UI elements
+  var yearsago = document.getElementById('years-ago');
+
   // Earth params
   var radius   = 0.5,
     segments = 32,
@@ -30,9 +33,21 @@
   light.position.set(5,3,5);
   scene.add(light);
 
-  var sphere = createSphere(radius, segments, imagePathForYearsAgo(600));
+  var sphere;
+  var startingYear = 600;
+  if (window.location.hash) {
+    startingYear = parseInt(window.location.hash.slice(1));
+  }
+  yearsago.value = startingYear === 0 ? '0' : startingYear + ' million';
+  updateSelectWithValue(startingYear);
+  onYearsAgoChanged();
+
+  /*
+  var sphere = createSphere(
+      radius, segments, imagePathForYearsAgo(startingYear));
   sphere.rotation.y = rotation;
   scene.add(sphere)
+  */
 
   var clouds = createClouds(radius, segments);
   clouds.rotation.y = rotation;
@@ -68,23 +83,25 @@
     }
   }
 
-  function setupSelect() {
-    var yearsago = document.getElementById('years-ago');
-    var updateWithValue = function(howmany) {
-      document.getElementById('how-long-ago').innerHTML = yearsago.value;
-      document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
-    }
-    var yearsAgoChanged = yearsago.onchange = function() {
-      var howmany = parseInt(yearsago.value);
-      scene.remove(sphere);
-      var img = imagePathForYearsAgo(howmany);
-      sphere = createSphere(radius, segments, img);
-      scene.add(sphere);
+  function updateSelectWithValue(howmany) {
+    document.getElementById('how-long-ago').innerHTML = yearsago.value;
+    document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
+    console.log(document.getElementById('explanation').innerHTML);
+  }
 
-      updateWithValue(howmany);
-    }
-    // This is the default.
-    updateWithValue(600);
+  function onYearsAgoChanged() {
+    var howmany = parseInt(yearsago.value);
+    scene.remove(sphere);
+    var img = imagePathForYearsAgo(howmany);
+    sphere = createSphere(radius, segments, img);
+    scene.add(sphere);
+
+    updateSelectWithValue(howmany);
+    window.location.replace('#' + howmany);
+  }
+
+  function setupSelect() {
+    yearsago.onchange = onYearsAgoChanged;
 
     // Keyboard listener
     document.addEventListener('keydown', function(e) {
@@ -92,11 +109,11 @@
       var select = document.getElementById('years-ago');
       if (e.keyCode == 37) {
         select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
-        yearsAgoChanged();
+        onYearsAgoChanged();
       } else if (e.keyCode == 39) {
         select.selectedIndex =
           Math.min(select.selectedIndex + 1, select.length - 1);
-        yearsAgoChanged();
+        onYearsAgoChanged();
       }
     }, false);
   }
