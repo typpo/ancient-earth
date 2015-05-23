@@ -106,10 +106,10 @@
     document.addEventListener('keydown', function(e) {
       // 37 and 39 respectively
       var select = document.getElementById('years-ago');
-      if (e.keyCode == 37) {
+      if (e.keyCode == 37 || e.keyCode == 75) {
         select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
         onYearsAgoChanged();
-      } else if (e.keyCode == 39) {
+      } else if (e.keyCode == 39 || e.keyCode == 74) {
         select.selectedIndex =
           Math.min(select.selectedIndex + 1, select.length - 1);
         onYearsAgoChanged();
