@@ -86,7 +86,6 @@
   function updateSelectWithValue(howmany) {
     document.getElementById('how-long-ago').innerHTML = yearsago.value;
     document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
-    console.log(document.getElementById('explanation').innerHTML);
   }
 
   function onYearsAgoChanged() {
