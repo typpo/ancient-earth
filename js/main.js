@@ -13,7 +13,7 @@
   var yearsago = document.getElementById('years-ago');
 
   // Earth params
-  var radius   = 0.5,
+  var radius = 0.5,
     segments = 32,
     rotation = 11;
 
@@ -93,6 +93,7 @@
     scene.remove(sphere);
     var img = imagePathForYearsAgo(howmany);
     sphere = createSphere(radius, segments, img);
+    sphere.rotation.y = rotation;
     scene.add(sphere);
 
     updateSelectWithValue(howmany);
