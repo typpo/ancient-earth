@@ -93,22 +93,29 @@
       font-size: 12px;
     }
 
+    .links {
+      position: absolute;
+      top: 5px;
+      left: 20px;
+      font-size: 12px;
+    }
+
     @media screen and (max-width: 850px) {
       .top, .top-sub, #explanation {
         font-size: 12px;
       }
 
-      #instructions {
+      #instructions, .social-container, .links {
         display: none;
       }
     }
     </style>
 </head>
 <body>
-  <div id="explanation"></div>
-  <div id="instructions">Use your ← and → keys to step through time.</div>
-  <div class="title">Earth, <span id="how-long-ago">600 million</span> years ago</div>
   <div class="top">
+    <div class="links">
+      <a href="http://dinosaurpictures.org/">Home</a>
+    </div>
     <span>
       What did Earth look like
       <select id="years-ago">
@@ -152,7 +159,12 @@ window.twttr=(function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],t=window.
       </script>
     </div>
   </div>
+  <div id="explanation"></div>
+  <div id="instructions">Use your ← and → keys to step through time.</div>
+  <div class="title">Earth, <span id="how-long-ago">600 million</span> years ago</div>
+
 	<div id="webgl"></div>
+
 	<script src="js/three.min.js"></script>
 	<script src="js/Detector.js"></script>
 	<script src="js/TrackballControls.js"></script>
