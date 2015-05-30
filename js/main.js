@@ -17,6 +17,11 @@
     segments = 32,
     rotation = 11;
 
+  var simulationClicked = false;
+	webglEl.addEventListener( 'mousedown', function() {
+    simulationClicked = true;
+  }, false);
+
   var scene = new THREE.Scene();
 
   var camera = new THREE.PerspectiveCamera(45, width / height, 0.01, 1000);
@@ -63,10 +68,15 @@
 
   function render() {
     controls.update();
-    //sphere.rotation.y += 0.0005;
-    sphere.rotation.y += 0.001;
-    //clouds.rotation.y += 0.0005;
-    clouds.rotation.y += 0.001;
+
+    if (simulationClicked) {
+      sphere.rotation.y += 0.0005;
+      clouds.rotation.y += 0.0005;
+    } else {
+      sphere.rotation.y += 0.001;
+      clouds.rotation.y += 0.001;
+    }
+
     requestAnimationFrame(render);
     renderer.render(scene, camera);
   }
