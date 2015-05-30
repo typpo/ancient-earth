@@ -104,17 +104,22 @@
   function setupSelect() {
     yearsago.onchange = onYearsAgoChanged;
 
+    var t = -1;
     document.addEventListener('keydown', function(e) {
-      // Left and right keys are 37 and 39 respectively, they step through the
-      // select.
-      var select = document.getElementById('years-ago');
-      if (e.keyCode == 37 || e.keyCode == 75) {
-        select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
-        onYearsAgoChanged();
-      } else if (e.keyCode == 39 || e.keyCode == 74) {
-        select.selectedIndex =
-          Math.min(select.selectedIndex + 1, select.length - 1);
-        onYearsAgoChanged();
+      var now = new Date().getTime();
+      if (now - t > 150) {
+        // Left and right keys are 37 and 39 respectively, they step through the
+        // select.
+        var select = document.getElementById('years-ago');
+        if (e.keyCode == 37 || e.keyCode == 75) {
+          select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
+          onYearsAgoChanged();
+        } else if (e.keyCode == 39 || e.keyCode == 74) {
+          select.selectedIndex =
+            Math.min(select.selectedIndex + 1, select.length - 1);
+          onYearsAgoChanged();
+        }
+        t = now;
       }
     }, false);
   }
