@@ -34,7 +34,8 @@
   scene.add(light);
 
   var sphere;
-  var startingYear = 600;
+  var DEFAULT_YEAR = 600;
+  var startingYear = DEFAULT_YEAR;
   if (window.location.hash) {
     startingYear = parseInt(window.location.hash.slice(1));
   }
