@@ -103,9 +103,9 @@
   function setupSelect() {
     yearsago.onchange = onYearsAgoChanged;
 
-    // Keyboard listener
     document.addEventListener('keydown', function(e) {
-      // 37 and 39 respectively
+      // Left and right keys are 37 and 39 respectively, they step through the
+      // select.
       var select = document.getElementById('years-ago');
       if (e.keyCode == 37 || e.keyCode == 75) {
         select.selectedIndex = Math.max(select.selectedIndex - 1, 0);
