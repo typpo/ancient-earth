@@ -27,7 +27,6 @@
 
   //scene.add(new THREE.AmbientLight(0x333333));
   scene.add(new THREE.AmbientLight(0x666666));
-  //scene.add(new THREE.AmbientLight(0xffffff));
 
   var light = new THREE.DirectionalLight(0xffffff, 1);
   light.position.set(5,3,5);
@@ -43,13 +42,6 @@
   updateSelectWithValue(startingYear);
   onYearsAgoChanged();
 
-  /*
-  var sphere = createSphere(
-      radius, segments, imagePathForYearsAgo(startingYear));
-  sphere.rotation.y = rotation;
-  scene.add(sphere)
-  */
-
   var clouds = createClouds(radius, segments);
   clouds.rotation.y = rotation;
   scene.add(clouds)
@@ -58,6 +50,8 @@
   scene.add(stars);
 
   var controls = new THREE.TrackballControls(camera, webglEl);
+  controls.minDistance = 1;
+  controls.maxDistance = 20;
 
   webglEl.appendChild(renderer.domElement);
 
