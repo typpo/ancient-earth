@@ -165,11 +165,15 @@
   }
 
   function setupControls() {
-    document.getElementById('remove-clouds').onclick = function() {
+    var removeCloudsElt = document.getElementById('remove-clouds');
+    removeCloudsElt.onclick = function() {
       scene.remove(clouds);
+      removeCloudsElt.style.display = 'none';
     };
-    document.getElementById('stop-rotation').onclick = function() {
+    var stopRotationElt = document.getElementById('stop-rotation');
+    stopRotationElt.onclick = function() {
       noRotation = true;
+      stopRotationElt.style.display = 'none';
     };
   }
 
