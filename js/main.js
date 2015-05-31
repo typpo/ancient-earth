@@ -59,6 +59,8 @@
   controls.minDistance = 1;
   controls.maxDistance = 20;
 
+  THREEx.WindowResize(renderer, camera);
+
   webglEl.appendChild(renderer.domElement);
 
   setupSelect();
