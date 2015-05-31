@@ -17,6 +17,7 @@
     segments = 32,
     rotation = 11;
 
+  var noRotation = false;
   var simulationClicked = false;
 	webglEl.addEventListener( 'mousedown', function() {
     simulationClicked = true;
@@ -61,6 +62,7 @@
   webglEl.appendChild(renderer.domElement);
 
   setupSelect();
+  setupControls();
 
   render();
 
@@ -69,12 +71,14 @@
   function render() {
     controls.update();
 
-    if (simulationClicked) {
-      sphere.rotation.y += 0.0005;
-      clouds.rotation.y += 0.0005;
-    } else {
-      sphere.rotation.y += 0.001;
-      clouds.rotation.y += 0.001;
+    if (!noRotation) {
+      if (simulationClicked) {
+        sphere.rotation.y += 0.0005;
+        clouds.rotation.y += 0.0005;
+      } else {
+        sphere.rotation.y += 0.001;
+        clouds.rotation.y += 0.001;
+      }
     }
 
     requestAnimationFrame(render);
@@ -156,6 +160,15 @@
       })
     );
     return mesh;
+  }
+
+  function setupControls() {
+    document.getElementById('remove-clouds').onclick = function() {
+      scene.remove(clouds);
+    };
+    document.getElementById('stop-rotation').onclick = function() {
+      noRotation = true;
+    };
   }
 
   function createClouds(radius, segments) {

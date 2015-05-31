@@ -90,6 +90,27 @@
       color: #eee;
     }
 
+    #controls {
+      font-size: 12px;
+      position: absolute;
+      top: 50px;
+      right: 30px;
+      color: #eee;
+      line-height: 2.5;
+      text-align: right;
+    }
+
+    #controls span {
+      background-color: #202020;
+      cursor: pointer;
+      padding: 5px;
+      border-radius: 5px;
+    }
+
+    #controls span:hover {
+      background-color: #303030;
+    }
+
     .social-container {
       position: absolute;
       top: 10px;
@@ -175,8 +196,14 @@
       </ul>
     </div>
   </div>
+  <div id="controls">
+    <span id="remove-clouds">Remove clouds</span><br>
+    <span id="stop-rotation">Stop rotation</span>
+  </div>
   <div id="explanation"></div>
-  <div id="instructions">Use your ← and → keys to step through time.</div>
+  <div id="instructions">
+    Use the ← and → keys to step through time.
+  </div>
   <div class="title">Earth, <span id="how-long-ago">600 million</span> years ago</div>
 
 	<div id="webgl"></div>
