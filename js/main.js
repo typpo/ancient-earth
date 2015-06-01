@@ -70,7 +70,9 @@
 
   render();
 
-  preloadTextures();
+  setTimeout(function() {
+    preloadTextures();
+  }, 2000);
 
   function render() {
     controls.update();
@@ -143,6 +145,7 @@
 
   function createSphere(radius, segments, img) {
     var map = THREE.ImageUtils.loadTexture(img);
+    map.minFilter = THREE.LinearFilter;
     var mesh = new THREE.Mesh(
       new THREE.SphereGeometry(radius, segments, segments),
       new THREE.MeshPhongMaterial({
