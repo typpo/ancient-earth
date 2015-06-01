@@ -96,19 +96,27 @@
       top: 50px;
       right: 30px;
       color: #eee;
-      line-height: 2.5;
       text-align: right;
     }
 
-    #controls span {
+    #controls .button {
       background-color: #202020;
       cursor: pointer;
       padding: 5px;
       border-radius: 5px;
+      line-height: 2.5;
     }
 
     #controls span:hover {
       background-color: #303030;
+    }
+
+    .jump-to-container {
+      margin-bottom: 3px;
+    }
+
+    #jump-to {
+      color: #fff;
     }
 
     .social-container {
@@ -207,8 +215,33 @@
     </div>
   </div>
   <div id="controls">
-    <span id="remove-clouds">Remove clouds</span><br>
-    <span id="stop-rotation">Stop rotation</span>
+    <div class="jump-to-container">
+      <span>Jump to... </span>
+      <select id="jump-to" class="button">
+        <option value="600">first multicellular life</option>
+        <option value="540">first shells</option>
+        <option value="470">first coral reefs</option>
+        <option value="470">first vertebrates</option>
+        <option value="430">first land plants</option>
+        <option value="400">first land animals</option>
+        <option value="400">first insects</option>
+        <option value="300">first reptiles</option>
+        <option value="220">first dinosaurs</option>
+        <option value="120">first flowers</option>
+        <option value="35">first primates</option>
+        <option value="35">first grass</option>
+        <option value="20">first hominids</option>
+
+        <option value="600">Pannotia supercontinent</option>
+        <option value="280">Pangea supercontinent</option>
+        <option value="240">Triassic</option>
+        <option value="170">Jurassic</option>
+        <option value="105">Cretaceous</option>
+        <option value="65">dinosaur extinction</option>
+      </select>
+    </div>
+    <span id="remove-clouds" class="button">Remove clouds</span><br>
+    <span id="stop-rotation" class="button">Stop rotation</span>
   </div>
   <div id="explanation"></div>
   <div id="instructions">
