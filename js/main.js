@@ -50,6 +50,8 @@
   updateSelectWithValue(startingYear);
   onYearsAgoChanged();
 
+  var loadedCount = 0;
+
   var clouds = createClouds(radius, segments);
   clouds.rotation.y = rotation;
   scene.add(clouds)
@@ -147,7 +149,9 @@
 
   function createSphere(radius, segments, img) {
     var map = THREE.ImageUtils.loadTexture(img, undefined, function() {
-      document.getElementById('loading').style.display = 'none';
+      if (++loadedCount >= 2) {
+        document.getElementById('loading').style.display = 'none';
+      }
     });
     map.minFilter = THREE.LinearFilter;
     var mesh = new THREE.Mesh(
@@ -184,10 +188,15 @@
   }
 
   function createClouds(radius, segments) {
+    var map = THREE.ImageUtils.loadTexture('images/fair_clouds_4k.png', undefined, function() {
+      if (++loadedCount >= 2) {
+        document.getElementById('loading').style.display = 'none';
+      }
+    });
     return new THREE.Mesh(
       new THREE.SphereGeometry(radius + 0.003, segments, segments),
       new THREE.MeshPhongMaterial({
-        map:         THREE.ImageUtils.loadTexture('images/fair_clouds_4k.png'),
+        map:         map,
         transparent: true
       })
     );
