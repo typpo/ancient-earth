@@ -17,6 +17,8 @@
     segments = 32,
     rotation = 11;
 
+  var sphereGeometry = new THREE.SphereGeometry(radius, segments, segments);
+
   var noRotation = false;
   var simulationClicked = false;
 	webglEl.addEventListener( 'mousedown', function() {
@@ -149,7 +151,7 @@
     });
     map.minFilter = THREE.LinearFilter;
     var mesh = new THREE.Mesh(
-      new THREE.SphereGeometry(radius, segments, segments),
+      sphereGeometry,
       new THREE.MeshPhongMaterial({
         map:         map,
         "color": 0xbbbbbb, "specular": 0x111111, "shininess": 1,
