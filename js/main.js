@@ -55,9 +55,12 @@
   var stars = createStars(90, 64);
   scene.add(stars);
 
-  var controls = new THREE.TrackballControls(camera, webglEl);
+  var controls = new THREE.OrbitControls(camera);
   controls.minDistance = 1;
   controls.maxDistance = 20;
+  controls.noKeys = true;
+  controls.rotateSpeed = 1.4;
+  controls.zoomSpeed = 1.5;
 
   THREEx.WindowResize(renderer, camera);
 
@@ -140,13 +143,10 @@
   }
 
   function createSphere(radius, segments, img) {
-    //var map = THREE.ImageUtils.loadTexture('images/early_jurassic.jpg');
-    //var map = THREE.ImageUtils.loadTexture('images/late_cretaceous.jpg');
     var map = THREE.ImageUtils.loadTexture(img);
     var mesh = new THREE.Mesh(
       new THREE.SphereGeometry(radius, segments, segments),
       new THREE.MeshPhongMaterial({
-        //map:         THREE.ImageUtils.loadTexture('images/2_no_clouds_4k.jpg'),
         map:         map,
         "color": 0xbbbbbb, "specular": 0x111111, "shininess": 1,
         bumpMap:     map,
