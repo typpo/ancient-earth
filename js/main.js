@@ -60,7 +60,6 @@
   controls.maxDistance = 20;
   controls.noKeys = true;
   controls.rotateSpeed = 1.4;
-  controls.zoomSpeed = 1.5;
 
   THREEx.WindowResize(renderer, camera);
 
