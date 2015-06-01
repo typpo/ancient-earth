@@ -55,7 +55,7 @@
   var stars = createStars(90, 64);
   scene.add(stars);
 
-  var controls = new THREE.OrbitControls(camera);
+  var controls = new THREE.OrbitControls(camera, webglEl);
   controls.minDistance = 1;
   controls.maxDistance = 20;
   controls.noKeys = true;
