@@ -140,6 +140,12 @@
         t = now;
       }
     }, false);
+
+    var jumpToElt = document.getElementById('jump-to');
+    jumpToElt.onchange = function(e) {
+      yearsago.value = jumpToElt.value + ' million';
+      onYearsAgoChanged();
+    };
   }
 
   function imagePathForYearsAgo(years) {
