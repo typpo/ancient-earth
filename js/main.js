@@ -203,7 +203,8 @@
       new THREE.SphereGeometry(radius + 0.003, segments, segments),
       new THREE.MeshPhongMaterial({
         map:         map,
-        transparent: true
+        transparent: true,
+        opacity: 1.0,
       })
     );
   }
