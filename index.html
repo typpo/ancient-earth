@@ -158,13 +158,17 @@
       color: #fff;
     }
 
-    @media screen and (max-width: 850px) {
+    @media screen and (max-width: 1024px) {
       .top, .top-sub, #explanation {
         font-size: 12px;
       }
 
       #instructions, .social-container, .links {
         display: none;
+      }
+
+      .main-heading {
+        line-height: 3.5;
       }
     }
     </style>
@@ -174,7 +178,7 @@
     <div class="links">
       <strong><a href="http://dinosaurpictures.org/" style="color:#B1B06B;">Check out our database of prehistoric creatures!</a></strong>
     </div>
-    <strong>
+    <strong class="main-heading">
       What did Earth look like
       <select id="years-ago">
         <option>600 million</option>
