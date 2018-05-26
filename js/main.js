@@ -6,20 +6,27 @@
     return;
   }
 
-  var width  = window.innerWidth,
-    height = window.innerHeight;
+  // Constants
+  var DEFAULT_YEAR = 600;
+
+  // Earth params
+  var radius = 0.5;
+  var segments = 32;
+  var rotation = 0;
+
+  // Misc
+  var width  = window.innerWidth;
+  var height = window.innerHeight;
+
+  var webParams = parseWebParams();
+  console.info('webParams:', webParams);
 
   // UI elements
   var yearsago = document.getElementById('years-ago');
 
-  // Earth params
-  var radius = 0.5,
-    segments = 32,
-    rotation = 11;
-
   var sphereGeometry = new THREE.SphereGeometry(radius, segments, segments);
 
-  var noRotation = false;
+  var rotation = false;
   var simulationClicked = false;
 	webglEl.addEventListener( 'mousedown', function() {
     simulationClicked = true;
@@ -41,13 +48,10 @@
   scene.add(light);
 
   var sphere;
-  var DEFAULT_YEAR = 600;
-  var startingYear = DEFAULT_YEAR;
-  if (window.location.hash) {
-    startingYear = parseInt(window.location.hash.slice(1));
-  }
-  yearsago.value = startingYear === 0 ? '0' : startingYear + ' million';
-  updateSelectWithValue(startingYear);
+
+  yearsago.value = webParams.startingYear === 0 ? '0' : webParams.startingYear + ' million';
+  updateSelectWithValue(webParams.startingYear);
+  // Create initial sphere.
   onYearsAgoChanged();
 
   var loadedCount = 0;
@@ -58,6 +62,12 @@
 
   var stars = createStars(90, 64);
   scene.add(stars);
+
+  var markers = createSurfaceMarkers(webParams.surfacePoints);
+  markers.forEach(function(marker) {
+    console.log('adding', marker);
+    scene.add(marker)
+  });
 
   var controls = new THREE.OrbitControls(camera, webglEl);
   controls.minDistance = 1;
@@ -81,7 +91,7 @@
   function render() {
     controls.update();
 
-    if (!noRotation) {
+    if (rotation) {
       if (simulationClicked) {
         sphere.rotation.y += 0.0005;
         clouds.rotation.y += 0.0005;
@@ -104,11 +114,11 @@
 
   function updateSelectWithValue(howmany) {
     document.getElementById('how-long-ago').innerHTML = yearsago.value;
-    document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany)];
+    document.getElementById('explanation').innerHTML = EXPLAIN_MAP[parseInt(howmany, 10)];
   }
 
   function onYearsAgoChanged() {
-    var howmany = parseInt(yearsago.value);
+    var howmany = parseInt(yearsago.value, 10);
     scene.remove(sphere);
     var img = imagePathForYearsAgo(howmany);
     sphere = createSphere(radius, segments, img);
@@ -188,7 +198,7 @@
     };
     var stopRotationElt = document.getElementById('stop-rotation');
     stopRotationElt.onclick = function() {
-      noRotation = true;
+      rotation = false;
       stopRotationElt.style.display = 'none';
     };
   }
@@ -217,5 +227,48 @@
         side: THREE.BackSide
       })
     );
+  }
+
+  function createSurfaceMarkers(latlngs) {
+    return latlngs.map(function(latlng) {
+      var material = new THREE.MeshBasicMaterial({color: 0xFEE5AC});
+      var geom = new THREE.SphereGeometry(0.005, 32, 32);
+      var marker = new THREE.Mesh(geom, material);
+      // Offset longitude by an arbitrary amount as determined by the starting
+      // longitude of the texture map.
+      var pos = latLngToVector3(latlng[0], (latlng[1] + 110.0) % 180.0, radius, 0);
+      marker.position.set(pos.x, pos.y, pos.z);
+      return marker;
+    });
+  }
+
+   // Convert the positions from a lat, lng to a position on a sphere.
+  function latLngToVector3(lat, lng, radius, height) {
+    var phi = (lat)*Math.PI/180;
+    var theta = (lng+90)*Math.PI/180;
+
+    var x = -(radius+height) * Math.cos(phi) * Math.cos(theta);
+    var y = (radius+height) * Math.sin(phi);
+    var z = (radius+height) * Math.cos(phi) * Math.sin(theta);
+
+    return new THREE.Vector3(x,y,z);
+  }
+
+  function parseWebParams() {
+    var ret = {
+      startingYear: DEFAULT_YEAR,
+      surfacePoints: [],
+    };
+    var hash = window.location.hash;
+    if (hash) {
+      var paramsIdx = hash.indexOf('?');
+      if (paramsIdx > -1) {
+        ret.startingYear = parseInt(hash.slice(1, paramsIdx), 10);
+        ret.surfacePoints = JSON.parse(hash.slice(paramsIdx + 1));
+      } else {
+        ret.startingYear = parseInt(hash.slice(1), 10);
+      }
+    }
+    return ret;
   }
 }());
