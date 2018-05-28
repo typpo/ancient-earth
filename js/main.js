@@ -10,7 +10,7 @@
   var DEFAULT_YEAR = 600;
 
   // Earth params
-  var radius = 0.5;
+  var radius = 1.0;
   var segments = 32;
   var rotation = 0;
 
@@ -26,7 +26,7 @@
 
   var sphereGeometry = new THREE.SphereGeometry(radius, segments, segments);
 
-  var rotation = false;
+  var rotation = true;
   var simulationClicked = false;
 	webglEl.addEventListener( 'mousedown', function() {
     simulationClicked = true;
@@ -159,8 +159,11 @@
   }
 
   function imagePathForYearsAgo(years) {
+    return 'images/scotese/' + years + '.jpg';
+    /*
     return years == 0 ? 'images/scrape/000present.jpg' : 'images/scrape/'
         + ((years+'').length < 3 ? '0' + years : years) + 'Marect.jpg';
+       */
   }
 
   function createSphere(radius, segments, img) {
