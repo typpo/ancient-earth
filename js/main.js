@@ -26,7 +26,7 @@
 
   var sphereGeometry = new THREE.SphereGeometry(radius, segments, segments);
 
-  var rotation = true;
+  var rotation = false;
   var simulationClicked = false;
 	webglEl.addEventListener( 'mousedown', function() {
     simulationClicked = true;
@@ -234,7 +234,7 @@
 
   function createSurfaceMarkers(latlngs) {
     return latlngs.map(function(latlng) {
-      var material = new THREE.MeshBasicMaterial({color: 0xFEE5AC});
+      var material = new THREE.MeshBasicMaterial({color: 0xff0000});
       var geom = new THREE.SphereGeometry(0.005, 32, 32);
       var marker = new THREE.Mesh(geom, material);
       // Offset longitude by an arbitrary amount as determined by the starting
